@@ -447,6 +447,8 @@ class TocMachine(GraphMachine):
         global layer
         layer += 1
         update.message.reply_text("state = LHCS")
+        global charID
+        #if charID == 
 
     #def on_exit_goal_L(self, update):
     #    update.message.reply_text("i'm exiting state1")
