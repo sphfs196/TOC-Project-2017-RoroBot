@@ -338,9 +338,10 @@ class TocMachine(GraphMachine):
         if (sadness >= goal_sadness and stateID == 'LHC') or (confuse >= goal_confuse and stateID == 'LHS') or (hunger >= goal_hunger and stateID == 'LCS') or (laughing >= goal_laughing and stateID == 'HCS'):
            return True
     
-    #def goto_init(self, update):
-    #    text = update.message.text
-    #    return text.lower() == 'go back'
+    def goto_init(self, update):
+		global layer
+		if layer == 4
+			return True
 
     def on_enter_goal_L(self, update):
         global stateID
@@ -450,6 +451,13 @@ class TocMachine(GraphMachine):
         global charID
         #if charID == 
 
+	def on_enter_init(self,update)
+		update.message.reply_text("restart~~")
+		global stateID
+		stateID = 'I'
+		global layer
+		layer = 0
+		
     #def on_exit_goal_L(self, update):
     #    update.message.reply_text("i'm exiting state1")
     #    print('Leaving state1')
