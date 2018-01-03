@@ -2,8 +2,8 @@ from transitions.extensions import GraphMachine
 from random import *
 
 laughing = 0
-hunger = -10
-confuse = -10
+hunger = 0
+confuse = 0
 energy = 0
 
 stateID = 'I'
@@ -59,11 +59,11 @@ class TocMachine(GraphMachine):
           goal_energy = randint(5,8)
  
     #def guess(self,update):
-	    text = update.message.reply_text
-        if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
-		    update.message.reply_text("guessing correct!!")
+#    text = update.message.reply_text
+#       if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
+#		    update.message.reply_text("guessing correct!!")
 			#send picture!!
-			return True
+			#return True
 		#charID = randint(1,4)
         #if charID == 1
            
@@ -291,11 +291,29 @@ class TocMachine(GraphMachine):
            return True
 
     def goto_LCE(self, update):
-        global laughing
+        if layer == 2:
+           text = update.message.text
+           if text == 'itching':
+              global laughing
+              laughing += randint(1,3)
+              print('laughing = ',laughing)
+           elif text == 'eating':
+              global hunger
+              hunger += randint(0,3)
+              print('hunger = ',hunger)
+           elif text == 'sleeping':
+              global confuse
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+           elif text == 'attack!':
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
+        #global laughing
         global goal_laughing
-        global confuse
+        #global confuse
         global goal_confuse
-        global energy
+        #global energy
         global goal_energy
         if (energy >= goal_energy and stateID == 'LC') or (confuse >= goal_confuse and stateID == 'LE') or (laughing >= goal_laughing and stateID == 'CE'):
            return True
@@ -343,14 +361,89 @@ class TocMachine(GraphMachine):
            return True
     
     def goto_init(self, update):
-		global layer
-		if layer == 4
-			return True
-		else 
-		    text = update.message.reply_text
-            if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
-		        update.message.reply_text("guessing correct!!")
-                return True				
+        global layer
+        global charID
+        if layer == 4:
+           update.message.reply_text("you got me <3")
+           if charID == 1:
+              update.message.reply_photo("https://imgur.com/1ysXp7V")#shin
+           elif charID == 2:
+              update.message.reply_photo("https://imgur.com/i0YvyEH")#winnie
+           elif charID == 3:
+              update.message.reply_photo("https://imgur.com/Cv3jlMq")#shizuka
+           elif charID == 4:
+              update.message.reply_photo("https://imgur.com/6uV8ZK9")#rilakuma
+           charID = randint(1,4)
+           global goal_laughing
+           global goal_hunger
+           global goal_confuse
+           global goal_energy
+           if charID == 1:#Shinnosuke
+              goal_laughing = randint(5,8)
+              goal_hunger = randint(4,6)
+              goal_confuse = randint(0,1)
+              goal_energy = randint(0,1)
+           elif charID == 2:#Winnie
+              goal_laughing = randint(4,6)
+              goal_hunger = randint(5,8)
+              goal_confuse = randint(2,3)
+              goal_energy = randint(0,2)
+           elif charID == 3:#Shizuka
+              goal_laughing = randint(0,3)
+              goal_hunger = randint(0,2)
+              goal_confuse = randint(5,8)
+              goal_energy = randint(0,5)
+           elif charID == 4:#Rilakuma
+              goal_laughing = randint(0,3)
+              goal_hunger = randint(0,5)
+              goal_confuse = randint(0,2)
+              goal_energy = randint(5,8)
+
+           return True
+        else: 
+           text = update.message.text
+        if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
+           update.message.reply_text("guessing correct!!")
+           if charID == 1:
+              update.message.reply_photo("https://imgur.com/1ysXp7V")#shin
+           elif charID == 2:
+              update.message.reply_photo("https://imgur.com/i0YvyEH")#winnie
+           elif charID == 3:
+              update.message.reply_photo("https://imgur.com/Cv3jlMq")#shizuka
+           elif charID == 4:
+              update.message.reply_photo("https://imgur.com/6uV8ZK9")#rilakuma
+           charID = randint(1,4)
+           #global goal_laughing
+           #global goal_hunger
+           #global goal_confuse
+           #global goal_energy
+           if charID == 1:#Shinnosuke
+              goal_laughing = randint(5,8)
+              goal_hunger = randint(4,6)
+              goal_confuse = randint(0,1)
+              goal_energy = randint(0,1)
+           elif charID == 2:#Winnie
+              goal_laughing = randint(4,6)
+              goal_hunger = randint(5,8)
+              goal_confuse = randint(2,3)
+              goal_energy = randint(0,2)
+           elif charID == 3:#Shizuka
+              goal_laughing = randint(0,3)
+              goal_hunger = randint(0,2)
+              goal_confuse = randint(5,8)
+              goal_energy = randint(0,5)
+           elif charID == 4:#Rilakuma
+              goal_laughing = randint(0,3)
+              goal_hunger = randint(0,5)
+              goal_confuse = randint(0,2)
+              goal_energy = randint(5,8)
+           return True
+        else:
+           if text == 'Shinnosuke' or text == 'Winnie' or text == 'Shizuka' or text == 'Rilakuma':
+              update.message.reply_text("wrong answer~")
+              update.message.reply_photo("https://imgur.com/e1RmpQo")
+           else:
+              print("not guessing")
 
     def on_enter_goal_L(self, update):
         global stateID
@@ -457,16 +550,17 @@ class TocMachine(GraphMachine):
         global layer
         layer += 1
         update.message.reply_text("state = LHCE")
-        global charID
+        goto_init(self,update)
+        #global charID
         #if charID == 
 
-	def on_enter_init(self,update)
-		update.message.reply_text("restart~~")
-		global stateID
-		stateID = 'I'
-		global layer
-		layer = 0
-		global charID
+    def on_enter_init(self,update):
+        update.message.reply_text("restart~~")
+        global stateID
+        stateID = 'I'
+        global layer
+        layer = 0
+        global charID
         charID = randint(1,4)
         global goal_laughing
         global goal_hunger
