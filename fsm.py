@@ -74,9 +74,13 @@ class TocMachine(GraphMachine):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
               update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += randint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
@@ -87,6 +91,10 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
               update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
@@ -138,20 +146,32 @@ class TocMachine(GraphMachine):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
               print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global hunger
         global goal_hunger
         #global laughing
@@ -211,20 +231,32 @@ class TocMachine(GraphMachine):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
               print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global energy
         global goal_energy
         #global confuse
@@ -234,53 +266,77 @@ class TocMachine(GraphMachine):
            return True
 
     def goto_LHC(self, update):
-        if layer == 2:
+        if (layer == 2) and (stateID == HC):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
               print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global confuse
         global goal_confuse
         #global hunger
         global goal_hunger
         #global laughing
         global goal_laughing
-        global stateID #remember to change in on_enter!!!
+        #global stateID #remember to change in on_enter!!!
         if (confuse >= goal_confuse and stateID == 'LH') or (hunger >= goal_hunger and stateID == 'LC') or (laughing >= goal_laughing and stateID == 'HC'):
            return True
 
     def goto_LHE(self, update):
-        if layer == 2:
+        if (layer == 2) and (statdID != LE):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
               print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global hunger
         global goal_hunger
         #global laughing
@@ -295,20 +351,32 @@ class TocMachine(GraphMachine):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
               print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global laughing
         global goal_laughing
         #global confuse
@@ -335,20 +403,32 @@ class TocMachine(GraphMachine):
            text = update.message.text
            if text == 'itching':
               global laughing
-              laughing += randint(1,3)
+              laughing += randint(0,3)
               print('laughing = ',laughing)
+              update.message.reply_text("Ha")
+           elif text == 'gaming~~':
+              laughing += tandint(0,3)
+              print('laughing = ',laughing)
+              update.message.reply_text("yaya")
            elif text == 'eating':
               global hunger
               hunger += randint(0,3)
               print('hunger = ',hunger)
+              update.message.reply_text("<3")
            elif text == 'sleeping':
               global confuse
               confuse += randint(0,3)
               print('confuse = ',confuse)
+              update.message.reply_text("....zz")
+           elif text == 'daydream':
+              confuse += randint(0,3)
+              print('confuse = ',confuse)
+              update.message.reply_text("...zzzzz")
            elif text == 'attack!':
               global energy
               energy += randint(0,3)
-              print('energy = ',energy)        
+              print('energy = ',energy)
+              update.message.reply_text("yah TOT")
         #global laughing
         global goal_laughing
         #global hunger
@@ -364,7 +444,8 @@ class TocMachine(GraphMachine):
         global layer
         global charID
         if layer == 4:
-           update.message.reply_text("you got me <3")
+           update.message.reply_text("it's final, you got me <3")
+           update.message.reply_text("here is a present for you")
            if charID == 1:
               update.message.reply_photo("https://imgur.com/1ysXp7V")#shin
            elif charID == 2:
@@ -403,7 +484,8 @@ class TocMachine(GraphMachine):
         else: 
            text = update.message.text
         if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
-           update.message.reply_text("guessing correct!!")
+           update.message.reply_text("correct answer!!")
+           update.message.reply_text("here is a present for you")
            if charID == 1:
               update.message.reply_photo("https://imgur.com/1ysXp7V")#shin
            elif charID == 2:
@@ -442,6 +524,7 @@ class TocMachine(GraphMachine):
            if text == 'Shinnosuke' or text == 'Winnie' or text == 'Shizuka' or text == 'Rilakuma':
               update.message.reply_text("wrong answer~")
               update.message.reply_photo("https://imgur.com/e1RmpQo")
+              update.message.reply_text("keep trying!!")
            else:
               print("not guessing")
 
