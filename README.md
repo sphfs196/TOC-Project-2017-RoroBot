@@ -34,6 +34,8 @@ The initial state is set to `init`.
 Every time each state is triggered to `advance` to another state, it will go to the next state.
 The Bot will choose one charactor to be in the four options.
 User needs to guess which charactor the bot is now by input some actions and see what happened.
+Every time it goes to a new state, it will reply which state you are now.
+If you are in the final state, it will tell you which charactor it is and restart.
 
 * user
 	* Input: "itching"
@@ -53,5 +55,3 @@ User needs to guess which charactor the bot is now by input some actions and see
 	
 	* Input: "attack!"
 		* Reply: "yah TOT"
-
-
