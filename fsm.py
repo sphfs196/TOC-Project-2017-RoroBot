@@ -4,7 +4,7 @@ from random import *
 laughing = 0
 hunger = -10
 confuse = -10
-sadness = 0
+energy = 0
 
 stateID = 'I'
 layer = 0
@@ -16,7 +16,7 @@ charID = 0
 goal_laughing = 5
 goal_hunger = 0
 goal_confuse = 0
-goal_sadness = 5
+goal_energy = 5
 
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
@@ -36,31 +36,35 @@ class TocMachine(GraphMachine):
        global goal_laughing
        global goal_hunger
        global goal_confuse
-       global goal_sadness
+       global goal_energy
        if charID == 1:#Shinnosuke
           goal_laughing = randint(5,8)
           goal_hunger = randint(4,6)
           goal_confuse = randint(0,1)
-          goal_sadness = randint(0,1)
+          goal_energy = randint(0,1)
        elif charID == 2:#Winnie
           goal_laughing = randint(4,6)
           goal_hunger = randint(5,8)
           goal_confuse = randint(2,3)
-          goal_sadness = randint(0,2)
+          goal_energy = randint(0,2)
        elif charID == 3:#Shizuka
           goal_laughing = randint(0,3)
           goal_hunger = randint(0,2)
           goal_confuse = randint(5,8)
-          goal_sadness = randint(0,5)
+          goal_energy = randint(0,5)
        elif charID == 4:#Rilakuma
           goal_laughing = randint(0,3)
           goal_hunger = randint(0,5)
           goal_confuse = randint(0,2)
-          goal_sadness = randint(5,8)
+          goal_energy = randint(5,8)
  
     #def guess(self,update):
-        #text = update.message.reply_text
-        #charID = randint(1,4)
+	    text = update.message.reply_text
+        if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
+		    update.message.reply_text("guessing correct!!")
+			#send picture!!
+			return True
+		#charID = randint(1,4)
         #if charID == 1
            
 
@@ -84,9 +88,9 @@ class TocMachine(GraphMachine):
               print('confuse = ',confuse)
               update.message.reply_text("....zz")
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
               update.message.reply_text("yah TOT")
         global goal_laughing
         global stateID #remember to change in on_enter!!!
@@ -120,11 +124,11 @@ class TocMachine(GraphMachine):
         #text = update.message.text
         #return text.lower() == 'goto c'
 
-    def goto_S(self, update):
-        global sadness
-        global goal_sadness
+    def goto_E(self, update):
+        global energy
+        global goal_energy
         global stateID #remember to change in on_enter!!!
-        if sadness >= goal_sadness and stateID == 'I':
+        if energy >= goal_energy and stateID == 'I':
            return True 
         #text = update.message.text
         #return text.lower() == 'goto s'
@@ -145,15 +149,15 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
         #global hunger
         global goal_hunger
         #global laughing
         global goal_laughing
         global stateID #remember to change in on_enter!!!
-        if (hunger >= goal_laughing and stateID == 'L') or (laughing >= goal_laughing and stateID == 'H'):
+        if (hunger >= goal_hunger and stateID == 'L') or (laughing >= goal_laughing and stateID == 'H'):
            return True 
         #text = update.message.text
         #return text.lower() == 'goto lh'
@@ -169,13 +173,13 @@ class TocMachine(GraphMachine):
         #text = update.message.text
         #return text.lower() == 'goto lc'
 
-    def goto_LS(self, update):
-        global sadness
-        global goal_sadness
+    def goto_LE(self, update):
+        global energy
+        global goal_energy
         global laughing
         global goal_laughing
         global stateID #remember to change in on_enter!!!
-        if (sadness >= goal_sadness and stateID == 'L') or (laughing >= goal_laughing and stateID == 'S'):
+        if (energy >= goal_energy and stateID == 'L') or (laughing >= goal_laughing and stateID == 'E'):
            return True
         #text = update.message.text
         #return text.lower() == 'goto ls'
@@ -191,18 +195,18 @@ class TocMachine(GraphMachine):
         #text = update.message.text
         #return text.lower() == 'goto hc'
 
-    def goto_HS(self, update):
-        global sadness
-        global goal_sadness
+    def goto_HE(self, update):
+        global energy
+        global goal_energy
         global hunger
         global goal_hunger
         global stateID #remember to change in on_enter!!!
-        if (sadness >= goal_sadness and stateID == 'H') or (hunger >= goal_hunger and stateID == 'S'):
+        if (energy >= goal_energy and stateID == 'H') or (hunger >= goal_hunger and stateID == 'E'):
            return True
         #text = update.message.text
         #return text.lower() == 'goto hs'
 
-    def goto_CS(self, update):
+    def goto_CE(self, update):
         if layer == 1:
            text = update.message.text
            if text == 'itching':
@@ -218,15 +222,15 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)
-        #global sadness
-        global goal_sadness
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
+        #global energy
+        global goal_energy
         #global confuse
         global goal_confuse
         global stateID #remember to change in on_enter!!!
-        if (sadness >= goal_sadness and stateID == 'C') or (confuse >= goal_confuse and stateID == 'S'):
+        if (energy >= goal_energy and stateID == 'C') or (confuse >= goal_confuse and stateID == 'E'):
            return True
 
     def goto_LHC(self, update):
@@ -245,9 +249,9 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
         #global confuse
         global goal_confuse
         #global hunger
@@ -258,7 +262,7 @@ class TocMachine(GraphMachine):
         if (confuse >= goal_confuse and stateID == 'LH') or (hunger >= goal_hunger and stateID == 'LC') or (laughing >= goal_laughing and stateID == 'HC'):
            return True
 
-    def goto_LHS(self, update):
+    def goto_LHE(self, update):
         if layer == 2:
            text = update.message.text
            if text == 'itching':
@@ -274,41 +278,41 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)
         #global hunger
         global goal_hunger
         #global laughing
         global goal_laughing
-        #global sadness
-        global goal_sadness
-        if (sadness >= goal_sadness and stateID == 'LH') or (hunger >= goal_hunger and stateID == 'LS') or (laughing >= goal_laughing and stateID == 'HS'):
+        #global energy
+        global goal_energy
+        if (energy >= goal_energy and stateID == 'LH') or (hunger >= goal_hunger and stateID == 'LE') or (laughing >= goal_laughing and stateID == 'HE'):
            return True
 
-    def goto_LCS(self, update):
+    def goto_LCE(self, update):
         global laughing
         global goal_laughing
         global confuse
         global goal_confuse
-        global sadness
-        global goal_sadness
-        if (sadness >= goal_sadness and stateID == 'LC') or (confuse >= goal_confuse and stateID == 'LS') or (laughing >= goal_laughing and stateID == 'CS'):
+        global energy
+        global goal_energy
+        if (energy >= goal_energy and stateID == 'LC') or (confuse >= goal_confuse and stateID == 'LE') or (laughing >= goal_laughing and stateID == 'CE'):
            return True
 
 
 
-    def goto_HCS(self, update):
+    def goto_HCE(self, update):
         global hunger
         global goal_hunger
         global confuse
         global goal_confuse
-        global sadness
-        global goal_sadness
-        if (sadness >= goal_sadness and stateID == 'HC') or (confuse >= goal_confuse and stateID == 'HS') or (hunger >= goal_hunger and stateID == 'CS'):
+        global energy
+        global goal_energy
+        if (energy >= goal_energy and stateID == 'HC') or (confuse >= goal_confuse and stateID == 'HE') or (hunger >= goal_hunger and stateID == 'CE'):
            return True
 
-    def goto_LHCS(self, update):
+    def goto_LHCE(self, update):
         if layer == 3:
            text = update.message.text
            if text == 'itching':
@@ -324,24 +328,29 @@ class TocMachine(GraphMachine):
               confuse += randint(0,3)
               print('confuse = ',confuse)
            elif text == 'attack!':
-              global sadness
-              sadness += randint(0,3)
-              print('sadness = ',sadness)        
+              global energy
+              energy += randint(0,3)
+              print('energy = ',energy)        
         #global laughing
         global goal_laughing
         #global hunger
         global goal_hunger
         #global confuse
         global goal_confuse
-        #global sadness
-        global goal_sadness
-        if (sadness >= goal_sadness and stateID == 'LHC') or (confuse >= goal_confuse and stateID == 'LHS') or (hunger >= goal_hunger and stateID == 'LCS') or (laughing >= goal_laughing and stateID == 'HCS'):
+        #global energy
+        global goal_energy
+        if (energy >= goal_energy and stateID == 'LHC') or (confuse >= goal_confuse and stateID == 'LHE') or (hunger >= goal_hunger and stateID == 'LCE') or (laughing >= goal_laughing and stateID == 'HCE'):
            return True
     
     def goto_init(self, update):
 		global layer
 		if layer == 4
 			return True
+		else 
+		    text = update.message.reply_text
+            if (text == 'Shinnosuke' and charID == 1) or (text =='Winnie' and charID == 2) or (text == 'Shizuka' and charID == 3) or (text == 'Rilakuma' and charID == 4):
+		        update.message.reply_text("guessing correct!!")
+                return True				
 
     def on_enter_goal_L(self, update):
         global stateID
@@ -365,12 +374,12 @@ class TocMachine(GraphMachine):
         layer += 1
         update.message.reply_text("state = C")
 
-    def on_enter_goal_S(self, update):
+    def on_enter_goal_E(self, update):
         global stateID
-        stateID = 'S'
+        stateID = 'E'
         global layer
         layer += 1
-        update.message.reply_text("state = S")
+        update.message.reply_text("state = E")
 
     def on_enter_goal_LH(self, update):
         global stateID
@@ -386,12 +395,12 @@ class TocMachine(GraphMachine):
         layer += 1
         update.message.reply_text("state = LC")
 
-    def on_enter_goal_LS(self, update):
+    def on_enter_goal_LE(self, update):
         global stateID
-        stateID = 'LS'
+        stateID = 'LE'
         global layer
         layer += 1
-        update.message.reply_text("state = LS")
+        update.message.reply_text("state = LE")
 
     def on_enter_goal_HC(self, update):
         global stateID
@@ -400,19 +409,19 @@ class TocMachine(GraphMachine):
         layer += 1
         update.message.reply_text("state = HC")
 
-    def on_enter_goal_HS(self, update):
+    def on_enter_goal_HE(self, update):
         global stateID
-        stateID = 'HS'
+        stateID = 'HE'
         global layer
         layer += 1
-        update.message.reply_text("state = HS")
+        update.message.reply_text("state = HE")
 
-    def on_enter_goal_CS(self, update):
+    def on_enter_goal_CE(self, update):
         global stateID
-        stateID = 'CS'
+        stateID = 'CE'
         global layer
         layer += 1
-        update.message.reply_text("state = CS")
+        update.message.reply_text("state = CE")
 
     def on_enter_goal_LHC(self, update):
         global stateID
@@ -421,33 +430,33 @@ class TocMachine(GraphMachine):
         layer += 1
         update.message.reply_text("state = LHC")
 
-    def on_enter_goal_LHS(self, update):
+    def on_enter_goal_LHE(self, update):
         global stateID
-        stateID = 'LHS'
+        stateID = 'LHE'
         global layer
         layer += 1
-        update.message.reply_text("state = LHS")
+        update.message.reply_text("state = LHE")
 
-    def on_enter_goal_LCS(self, update):
+    def on_enter_goal_LCE(self, update):
         global stateID
-        stateID = 'LCS'
+        stateID = 'LCE'
         global layer
         layer += 1
-        update.message.reply_text("state = LCS")
+        update.message.reply_text("state = LCE")
 
-    def on_enter_goal_HCS(self, update):
+    def on_enter_goal_HCE(self, update):
         global stateID
-        stateID = 'HCS'
+        stateID = 'HCE'
         global layer
         layer += 1
-        update.message.reply_text("state = HCS")
+        update.message.reply_text("state = HCE")
 
-    def on_enter_goal_LHCS(self, update):
+    def on_enter_goal_LHCE(self, update):
         global stateID
-        stateID = 'LHCS'
+        stateID = 'LHCE'
         global layer
         layer += 1
-        update.message.reply_text("state = LHCS")
+        update.message.reply_text("state = LHCE")
         global charID
         #if charID == 
 
@@ -457,6 +466,32 @@ class TocMachine(GraphMachine):
 		stateID = 'I'
 		global layer
 		layer = 0
+		global charID
+        charID = randint(1,4)
+        global goal_laughing
+        global goal_hunger
+        global goal_confuse
+        global goal_energy
+        if charID == 1:#Shinnosuke
+           goal_laughing = randint(5,8)
+           goal_hunger = randint(4,6)
+           goal_confuse = randint(0,1)
+           goal_energy = randint(0,1)
+        elif charID == 2:#Winnie
+           goal_laughing = randint(4,6)
+           goal_hunger = randint(5,8)
+           goal_confuse = randint(2,3)
+           goal_energy = randint(0,2)
+        elif charID == 3:#Shizuka
+           goal_laughing = randint(0,3)
+           goal_hunger = randint(0,2)
+           goal_confuse = randint(5,8)
+           goal_energy = randint(0,5)
+        elif charID == 4:#Rilakuma
+           goal_laughing = randint(0,3)
+           goal_hunger = randint(0,5)
+           goal_confuse = randint(0,2)
+           goal_energy = randint(5,8)
 		
     #def on_exit_goal_L(self, update):
     #    update.message.reply_text("i'm exiting state1")

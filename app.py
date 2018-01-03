@@ -19,18 +19,18 @@ machine = TocMachine(
         'goal_L',
         'goal_H',
         'goal_C',
-        'goal_S',
+        'goal_E',
         'goal_LH',
         'goal_LC',
-        'goal_LS',
+        'goal_LE',
         'goal_HC',
-        'goal_HS',
-        'goal_CS',
+        'goal_HE',
+        'goal_CE',
         'goal_LHC',
-        'goal_LHS',
-        'goal_LCS',
-        'goal_HCS',
-        'goal_LHCS'
+        'goal_LHE',
+        'goal_LCE',
+        'goal_HCE',
+        'goal_LHCE'
     ],
     transitions=[
         {
@@ -54,8 +54,8 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'init',
-            'dest': 'goal_S',
-            'conditions': 'goto_S'
+            'dest': 'goal_E',
+            'conditions': 'goto_E'
         },
         {
             'trigger': 'advance',
@@ -72,8 +72,8 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_L',
-            'dest': 'goal_LS',
-            'conditions': 'goto_LS'
+            'dest': 'goal_LE',
+            'conditions': 'goto_LE'
         },
         {
             'trigger': 'advance',
@@ -90,8 +90,8 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_H',
-            'dest': 'goal_HS',
-            'conditions': 'goto_HS'
+            'dest': 'goal_HE',
+            'conditions': 'goto_HE'
         },
         {
             'trigger': 'advance',
@@ -108,28 +108,27 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_C',
-            'dest': 'goal_CS',
-            'conditions': 'goto_CS'
+            'dest': 'goal_CE',
+            'conditions': 'goto_CE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_S',
-            'dest': 'goal_LS',
-            'conditions': 'goto_LS'
+            'source': 'goal_E',
+            'dest': 'goal_LE',
+            'conditions': 'goto_LE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_S',
-            'dest': 'goal_HS',
-            'conditions': 'goto_HS'
+            'source': 'goal_E',
+            'dest': 'goal_HE',
+            'conditions': 'goto_HE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_S',
-            'dest': 'goal_CS',
-            'conditions': 'goto_CS'
+            'source': 'goal_E',
+            'dest': 'goal_CE',
+            'conditions': 'goto_CE'
         },
-
         {
             'trigger': 'advance',
             'source': 'goal_LH',
@@ -139,8 +138,8 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_LH',
-            'dest': 'goal_LHS',
-            'conditions': 'goto_LHS'
+            'dest': 'goal_LHE',
+            'conditions': 'goto_LHE'
         },
         {
             'trigger': 'advance',
@@ -151,20 +150,20 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_LC',
-            'dest': 'goal_LCS',
-            'conditions': 'goto_LCS'
+            'dest': 'goal_LCE',
+            'conditions': 'goto_LCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_LS',
-            'dest': 'goal_LHS',
-            'conditions': 'goto_LHS'
+            'source': 'goal_LE',
+            'dest': 'goal_LHE',
+            'conditions': 'goto_LHE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_LS',
-            'dest': 'goal_LCS',
-            'conditions': 'goto_LCS'
+            'source': 'goal_LE',
+            'dest': 'goal_LCE',
+            'conditions': 'goto_LCE'
         },
         {
             'trigger': 'advance',
@@ -175,57 +174,78 @@ machine = TocMachine(
         {
             'trigger': 'advance',
             'source': 'goal_HC',
-            'dest': 'goal_HCS',
-            'conditions': 'goto_HCS'
+            'dest': 'goal_HCE',
+            'conditions': 'goto_HCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_HS',
-            'dest': 'goal_LHS',
-            'conditions': 'goto_LHS'
+            'source': 'goal_HE',
+            'dest': 'goal_LHE',
+            'conditions': 'goto_LHE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_HS',
-            'dest': 'goal_HCS',
-            'conditions': 'goto_HCS'
+            'source': 'goal_HE',
+            'dest': 'goal_HCE',
+            'conditions': 'goto_HCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_CS',
-            'dest': 'goal_LCS',
-            'conditions': 'goto_LCS'
+            'source': 'goal_CE',
+            'dest': 'goal_LCE',
+            'conditions': 'goto_LCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_CS',
-            'dest': 'goal_HCS',
-            'conditions': 'goto_HCS'
+            'source': 'goal_CE',
+            'dest': 'goal_HCE',
+            'conditions': 'goto_HCE'
         },
         {
             'trigger': 'advance',
             'source': 'goal_LHC',
-            'dest': 'goal_LHCS',
-            'conditions': 'goto_LHCS'
+            'dest': 'goal_LHCE',
+            'conditions': 'goto_LHCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_LHS',
-            'dest': 'goal_LHCS',
-            'conditions': 'goto_LHCS'
+            'source': 'goal_LHE',
+            'dest': 'goal_LHCE',
+            'conditions': 'goto_LHCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_LCS',
-            'dest': 'goal_LHCS',
-            'conditions': 'goto_LHCS'
+            'source': 'goal_LCE',
+            'dest': 'goal_LHCE',
+            'conditions': 'goto_LHCE'
         },
         {
             'trigger': 'advance',
-            'source': 'goal_HCS',
-            'dest': 'goal_LHCS',
-            'conditions': 'goto_LHCS'
+            'source': 'goal_HCE',
+            'dest': 'goal_LHCE',
+            'conditions': 'goto_LHCE'
         },
+		{
+            'trigger': 'advance',
+            'source': ['goal_L',
+						'goal_H',
+						'goal_C',
+						'goal_E',
+						'goal_LH',
+						'goal_LC',
+						'goal_LE',
+						'goal_HC',
+						'goal_HE',
+						'goal_CE',
+						'goal_LHC',
+						'goal_LHE',
+						'goal_LCE',
+						'goal_HCE',
+						'goal_LHCE'
+						],
+            'dest': 'init',
+            'conditions': 'goto_init'
+        }
         #{
         #    'trigger': 'go_back',
         #    'source': [
