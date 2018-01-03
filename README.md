@@ -36,7 +36,9 @@ The Bot will choose one charactor to be in the four options.
 User needs to guess which charactor the bot is now by input some actions and see what happened.
 Every time it goes to a new state, it will reply which state you are now.
 If you are in the final state, it will tell you which charactor it is and restart.
-
+You can guess which charactor it is now. If you get the correct answer, it will give you the charactor's picture and restart. If you get a wrong answer, you need to keep going from your
+ current state.
+ 
 * user
 	* Input: "itching"
 		* Reply: "Ha"
