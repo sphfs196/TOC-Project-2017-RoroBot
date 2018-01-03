@@ -43,15 +43,15 @@ User needs to guess which charactor the bot is now by input some actions and see
 		* Reply: "yaya"
 
 	* Input: "eating"
-                * Reply: "<3"
+		* Reply: "<3"
 
 	* Input: "sleeping"
-                * Reply: "....zz"
+		* Reply: "....zz"
 
 	* Input: "daydream"
-                * Reply: "...zzzzz"
+		* Reply: "...zzzzz"
 	
 	* Input: "attack!"
-                * Reply: "yah TOT"
+		* Reply: "yah TOT"
 
 
