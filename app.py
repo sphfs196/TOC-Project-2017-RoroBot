@@ -29,7 +29,8 @@ machine = TocMachine(
         'goal_LHC',
         'goal_LHS',
         'goal_LCS',
-        'goal_HCS'
+        'goal_HCS',
+        'goal_LHCS'
     ],
     transitions=[
         {
@@ -201,10 +202,30 @@ machine = TocMachine(
             'dest': 'goal_HCS',
             'conditions': 'goto_HCS'
         },
-
-
-
-
+        {
+            'trigger': 'advance',
+            'source': 'goal_LHC',
+            'dest': 'goal_LHCS',
+            'conditions': 'goto_LHCS'
+        },
+        {
+            'trigger': 'advance',
+            'source': 'goal_LHS',
+            'dest': 'goal_LHCS',
+            'conditions': 'goto_LHCS'
+        },
+        {
+            'trigger': 'advance',
+            'source': 'goal_LCS',
+            'dest': 'goal_LHCS',
+            'conditions': 'goto_LHCS'
+        },
+        {
+            'trigger': 'advance',
+            'source': 'goal_HCS',
+            'dest': 'goal_LHCS',
+            'conditions': 'goto_LHCS'
+        },
         #{
         #    'trigger': 'go_back',
         #    'source': [
