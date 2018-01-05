@@ -266,7 +266,7 @@ class TocMachine(GraphMachine):
            return True
 
     def goto_LHC(self, update):
-        if (layer == 2) and (stateID == HC):
+        if (layer == 2) and (stateID == 'HC'):
            text = update.message.text
            if text == 'itching':
               global laughing
@@ -307,7 +307,7 @@ class TocMachine(GraphMachine):
            return True
 
     def goto_LHE(self, update):
-        if (layer == 2) and (statdID != LE):
+        if (layer == 2) and (stateID != 'LE'):
            text = update.message.text
            if text == 'itching':
               global laughing
